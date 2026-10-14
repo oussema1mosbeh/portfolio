@@ -303,7 +303,7 @@ const D=1300,T0=performance.now(),M=Math.hypot(innerWidth,innerHeight)/2+40;
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 /* ===== EDIT ME: all content lives here ===== */
-const CONFIG={email:"you@example.com",github:"https://github.com/your-handle",linkedin:"https://linkedin.com/in/your-handle"};
+const CONFIG={email:"oussema.mosbehux@gmail.com",github:"https://github.com/oussema1mosbeh",linkedin:"https://linkedin.com/in/your-handle"};
 const STEPS=["Problem","Data","Approach","Model","Training","Evaluation","Result"];
 const PROJECTS=[
 {name:"Movie Recommender",cat:"Recommender Systems",desc:"Pick a few movies you love and it finds what to watch next. It learns only from what 610 people actually watched.",tech:["Python","Scikit-learn","Pandas","JavaScript"],goal:"73% hit rate @10, up from 58% for a popularity baseline.",github:"https://github.com/oussema1mosbeh/movie-recommender",demo:"projects/movie-recommender/",img:"projects/movie-recommender/cover.jpg",art:"recs",
@@ -353,7 +353,7 @@ function closeCS(){cs.classList.remove('o');document.body.style.overflow='';leni
 $('#grid').addEventListener('click',e=>{if(e.target.closest('[data-g]'))return;const c=e.target.closest('.card');c&&openCS(+c.dataset.i)});
 $('#grid').addEventListener('keydown',e=>{if(e.key=='Enter'){const c=e.target.closest('.card');c&&openCS(+c.dataset.i)}});
 $('#cx').onclick=closeCS;addEventListener('keydown',e=>e.key=='Escape'&&closeCS());
-document.querySelectorAll('.card').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),v=c.querySelector('.vis svg');v.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5)*-8+'px');v.style.setProperty('--my',((e.clientY-r.top)/r.height-.5)*-6+'px')}));
+document.querySelectorAll('.card').forEach(c=>c.addEventListener('mousemove',e=>{const r=c.getBoundingClientRect(),v=c.querySelector('.vis svg');if(!v)return;v.style.setProperty('--mx',((e.clientX-r.left)/r.width-.5)*-8+'px');v.style.setProperty('--my',((e.clientY-r.top)/r.height-.5)*-6+'px')}));
 /* skills / process */
 $('#sk').innerHTML=Object.entries(SKILLS).map(([k,v])=>`<div><h3 class="mono">${k}</h3><ul>${v.map(s=>`<li>${s}</li>`).join('')}</ul></div>`).join('');
 $('#pr').innerHTML=PROCESS.map((p,i)=>`<div style="--n:${i+1}"><span class="mono">0${i+1} / 06</span><h3>${p[0]}</h3><p>${p[1]}</p></div>`).join('');
