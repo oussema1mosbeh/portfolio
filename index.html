@@ -272,9 +272,9 @@ nav{transition:padding .4s,background .4s,width .4s,opacity .5s,transform .5s,vi
 <section id="process"><div class="wrap"><p class="mono rv">( 06 ) Process</p><h2 class="rv">How I work.</h2><div class="pr" id="pr"></div></div></section>
 
 <section id="contact"><div class="wrap"><div class="cta"><p class="mono rv">( 07 ) Contact</p><p class="big rv" style="margin-top:20px">Have a problem<br>worth solving?<br><em>Let's build something intelligent.</em></p>
-<div class="btns rv" style="margin-top:36px"><a class="btn p mg" id="mail" href="#">Send an email</a><a class="btn mg" id="gh" href="#">GitHub</a><a class="btn mg" id="li" href="#">LinkedIn</a></div></div></div></section>
+<div class="btns rv" style="margin-top:36px"><a class="btn p mg" id="mail" href="#">Send an email</a><a class="btn mg" id="gh" href="#">GitHub</a></div></div></div></section>
 </main>
-<footer><div class="wrap"><div><b class="logo"><svg class="mk" aria-hidden="true"><use href="#mo-mark"/></svg>MOSBEH OUSSEMA</b><p class="mono" style="margin-top:6px">Machine Learning & Deep Learning</p></div><p class="mono">© 2026</p><p class="mono"><a id="f1" href="#">GitHub</a> · <a id="f2" href="#">LinkedIn</a> · <a id="f3" href="#">Email</a></p></div></footer>
+<footer><div class="wrap"><div><b class="logo"><svg class="mk" aria-hidden="true"><use href="#mo-mark"/></svg>MOSBEH OUSSEMA</b><p class="mono" style="margin-top:6px">Machine Learning & Deep Learning</p></div><p class="mono">© 2026</p><p class="mono"><a id="f1" href="#">GitHub</a> · <a id="f3" href="#">Email</a></p></div></footer>
 
 <div id="cs" data-lenis-prevent role="dialog" aria-modal="true" aria-label="Case study"><button class="x" id="cx">Close ✕</button><div class="wrap" style="padding-top:120px;padding-bottom:120px"><p class="mono" id="cc"></p><h2 id="ct"></h2><p class="lead" id="cd"></p><div class="btns" id="cl" style="margin-top:28px"></div><div class="steps" id="cst"></div></div></div>
 
@@ -303,7 +303,7 @@ const D=1300,T0=performance.now(),M=Math.hypot(innerWidth,innerHeight)/2+40;
 <script src="https://cdn.jsdelivr.net/npm/lenis@1.1.13/dist/lenis.min.js"></script>
 <script>
 /* ===== EDIT ME: all content lives here ===== */
-const CONFIG={email:"oussema.mosbehux@gmail.com",github:"https://github.com/oussema1mosbeh",linkedin:"https://linkedin.com/in/your-handle"};
+const CONFIG={email:"oussema.mosbehux@gmail.com",github:"https://github.com/oussema1mosbeh"};
 const STEPS=["Problem","Data","Approach","Model","Training","Evaluation","Result"];
 const PROJECTS=[
 {name:"Movie Recommender",cat:"Recommender Systems",desc:"Pick a few movies you love and it finds what to watch next. It learns only from what 610 people actually watched.",tech:["Python","Scikit-learn","Pandas","JavaScript"],goal:"73% hit rate @10, up from 58% for a popularity baseline.",github:"https://github.com/oussema1mosbeh/movie-recommender",demo:"projects/movie-recommender/",img:"projects/movie-recommender/cover.jpg",art:"recs",
@@ -358,7 +358,7 @@ document.querySelectorAll('.card').forEach(c=>c.addEventListener('mousemove',e=>
 $('#sk').innerHTML=Object.entries(SKILLS).map(([k,v])=>`<div><h3 class="mono">${k}</h3><ul>${v.map(s=>`<li>${s}</li>`).join('')}</ul></div>`).join('');
 $('#pr').innerHTML=PROCESS.map((p,i)=>`<div style="--n:${i+1}"><span class="mono">0${i+1} / 06</span><h3>${p[0]}</h3><p>${p[1]}</p></div>`).join('');
 /* links */
-$('#mail').href=$('#f3').href='mailto:'+CONFIG.email;$('#gh').href=$('#f1').href=CONFIG.github;$('#li').href=$('#f2').href=CONFIG.linkedin;
+$('#mail').href=$('#f3').href='mailto:'+CONFIG.email;$('#gh').href=$('#f1').href=CONFIG.github;
 /* reveal */
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12,rootMargin:'0px 0px -6% 0px'});
 $('#sk').classList.remove('rv');
