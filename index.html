@@ -238,6 +238,12 @@ nav{transition:padding .4s,background .4s,width .4s,opacity .5s,transform .5s,vi
 .pr h3{font-size:clamp(22px,2.2vw,30px)}.pr>div p{margin-top:auto;font-size:15px;line-height:1.55}
 @media(max-width:560px){.pr>div{min-height:0;padding:16px;gap:8px}.pr h3{font-size:19px}.pr>div p{font-size:13px;line-height:1.45}}
 .pr>div:after{content:"";position:absolute;left:0;bottom:0;height:2px;width:calc(var(--n)/6*100%);background:linear-gradient(90deg,rgba(147,80,115,0),var(--acc));opacity:.7}
+/* big screens: scale the content sections up (x1.12 from 1700 px, x1.22 from 2000, x1.35 from 2300, x1.6 from 2800).
+   The hero, the dot field and the cursor already follow the screen size, so they are left alone. */
+:root{--z:1}@media(min-width:1700px){:root{--z:1.12}}@media(min-width:2000px){:root{--z:1.22}}@media(min-width:2300px){:root{--z:1.35}}@media(min-width:2800px){:root{--z:1.6}}
+section .wrap,footer .wrap,#cs .wrap,nav{zoom:var(--z)}
+nav{width:min(1100px,calc((100% - 24px) / var(--z)))}
+@media(min-width:901px){#pc{height:calc(min(78vh,760px * var(--z)) / var(--z))}}
 </style>
 </head>
 <body>
@@ -421,14 +427,14 @@ const cur=$('#cur');
 if(!TOUCH){let cx=-99,cy=-99,tx=-99,ty=-99;addEventListener('mousemove',e=>{tx=e.clientX;ty=e.clientY;cur.style.opacity=cur.classList.contains('v')?.9:.8});
 (function cl(){cx+=(tx-cx)*.22;cy+=(ty-cy)*.22;cur.style.transform=`translate3d(${cx}px,${cy}px,0)`;requestAnimationFrame(cl)})();
 document.addEventListener('mouseover',e=>cur.classList.toggle('v',!!e.target.closest('.card')));
-if(!RM)document.querySelectorAll('.mg').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect();b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25}px,${(e.clientY-r.top-r.height/2)*.35}px)`});b.addEventListener('mouseleave',()=>b.style.transform='')})}
+if(!RM)document.querySelectorAll('.mg').forEach(b=>{b.addEventListener('mousemove',e=>{const r=b.getBoundingClientRect(),z=b.currentCSSZoom||1;b.style.transform=`translate(${(e.clientX-r.left-r.width/2)*.25/z}px,${(e.clientY-r.top-r.height/2)*.35/z}px)`});b.addEventListener('mouseleave',()=>b.style.transform='')})}
 /* pipeline: glowing AI chip on a circuit board — scroll drives data in → model → training → predictions out */
 const pc=$('#pc'),px=pc.getContext('2d'),pl=$('#pl'),pd=$('#pd');
 pl.innerHTML=PIPE.map((p,i)=>`<span><b>0${i+1}</b>${p[0]}</span>`).join('');
-let pw,ph,prog=0,H,traces=[],pulses=[],tex={};const dpr=Math.min(devicePixelRatio,2);
+let pw,ph,prog=0,H,traces=[],pulses=[],tex={};let dpr=Math.min(devicePixelRatio,2);
 const cv=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c};
 const DIR=[[-1,0],[1,0],[0,-1],[0,1]],ALONG=[[0,1],[0,1],[1,0],[1,0]];/* sides: left in, right out, top in, bottom out */
-function rs(){pw=pc.clientWidth;ph=pc.clientHeight;pc.width=pw*dpr;pc.height=ph*dpr;H=Math.min(pw*(pw<600?.26:.23),ph*.3);build()}
+function rs(){dpr=Math.min(devicePixelRatio,2)*(pc.currentCSSZoom||1);pw=pc.clientWidth;ph=pc.clientHeight;pc.width=pw*dpr;pc.height=ph*dpr;H=Math.min(pw*(pw<600?.26:.23),ph*.3);build()}
 function build(){let sd=11;const r=()=>(sd=sd*16807%2147483647)/2147483647;traces=[];pulses=[];
 for(let s=0;s<4;s++)for(let i=0;i<9;i++){const o=DIR[s],al=ALONG[s],t=(i+.5)/9*2-1,sg=t<0?-1:1;
 let x=o[0]*H*1.08+al[0]*t*H*.84,y=o[1]*H*1.08+al[1]*t*H*.84;const p=[[x,y]];
